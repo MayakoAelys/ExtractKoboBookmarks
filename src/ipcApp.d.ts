@@ -1,5 +1,5 @@
 export interface IElectronAPI {
-    selectKoboReaderFile: () => Promise<void>,
+    selectKoboReaderFileAsync: () => Promise<string | undefined>,
   }
   
   declare global {

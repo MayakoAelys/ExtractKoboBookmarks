@@ -52,5 +52,7 @@ export function registerAppEvents(baseDir: string, viteDevServerUrl: string, ren
         }
     });
 
-    ipcMain.on('ipcApp:selectKoboReaderFile', ipcApp.selectKoboReaderFile);
+    ipcMain.handle('ipcApp:selectKoboReaderFile', () => {
+        return ipcApp.selectKoboReaderFile();
+      });      
 }

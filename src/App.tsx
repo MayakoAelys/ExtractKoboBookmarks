@@ -4,21 +4,24 @@ import { ChooseFilesButton } from './components/ChooseFilesButton';
 
 function App() {
 
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [selectedKoboReaderFilePath, setSelectedKoboReaderFilePath] = 
+    useState<string | undefined>(undefined);
 
-  function handleDropFile(event: React.DragEvent<HTMLDivElement>) {
-    event.preventDefault();
+  // const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
-    const files = event.dataTransfer?.files;
+  // function handleDropFile(event: React.DragEvent<HTMLDivElement>) {
+  //   event.preventDefault();
 
-    if (!(files?.length)) return;
+  //   const files = event.dataTransfer?.files;
 
-    setSelectedFiles(Array.from(files));
+  //   if (!(files?.length)) return;
 
-    console.log(selectedFiles);
+  //   setSelectedFiles(Array.from(files));
 
-    alert('Test!');
-  }
+  //   console.log(selectedFiles);
+
+  //   alert('Test!');
+  // }
   
   
   return (
@@ -29,20 +32,20 @@ function App() {
         </center>
 
         <h1 className="title is-4">Select KoboReader file</h1>
-        <div 
+        {/* <div 
           onDrop={ handleDropFile }
           onDragOver={ (e) => e.preventDefault() }
         >
           <p>
             Drop your KoboReader file here! <br />
           ... Or click on the following button
-          </p>
+          </p> */}
           <p>
-            <ChooseFilesButton />
+            <ChooseFilesButton setSelectedFile={setSelectedKoboReaderFilePath} />
           </p>
-        </div>
+        {/* </div> */}
 
-        <pre>Selected files: { JSON.stringify(selectedFiles) }</pre>
+        <pre>Selected files: { JSON.stringify(selectedKoboReaderFilePath) }</pre>
 
       </section>
     </div>

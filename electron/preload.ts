@@ -24,11 +24,11 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
 });
 
 contextBridge.exposeInMainWorld('ipcApp', {
-  selectKoboReaderFile() {
+  async selectKoboReaderFileAsync() {
     console.log('selectKoboReaderFile - IN');
 
     console.log('selectKoboReaderFile - OUT');
     
-    return ipcRenderer.send('ipcApp:selectKoboReaderFile');
+    return await ipcRenderer.invoke('ipcApp:selectKoboReaderFile');
   }
 });

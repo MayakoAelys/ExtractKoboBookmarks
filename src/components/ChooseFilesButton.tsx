@@ -1,17 +1,25 @@
 import { useState } from "react";
 
-export function ChooseFilesButton() {
+// interface Props {
+//     selectedFile: string;
+// }
+
+export function ChooseFilesButton({ setSelectedFile }) {
 
     const [message, setMessage] = useState('Not clicked');
 
     function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
 
-        console.log('clickity');
+        console.log('handleClick - IN');
 
-        window.ipcApp.selectKoboReaderFile();
+        window.ipcApp.selectKoboReaderFileAsync().then((selectedFile) => {
+            console.log('handleClick - selectedFile =', selectedFile);
 
-        setMessage('clicked');
+            setMessage('clicked');
+            setSelectedFile(selectedFile);
+
+        });
     }
 
     return <>
