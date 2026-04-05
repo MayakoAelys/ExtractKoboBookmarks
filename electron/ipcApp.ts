@@ -1,5 +1,8 @@
 import { dialog } from 'electron';
 import { sqliteUtils } from './utils/sqliteUtils';
+import { SqlBookmark } from './models/SqlBookmark';
+import { Bookmark } from './models/Bookmark';
+import { fileUtils } from './utils/fileUtils';
 
 export const ipcApp = {
     selectKoboReaderFile(): string | undefined {
@@ -28,19 +31,20 @@ export const ipcApp = {
         return chosenFolder[0];
     },
 
-    startExtraction(koboReaderFilePath: string, koboRootFolderPath: string): void {
-        console.log('ipcApp - startExtraction - IN');
-        console.log('ipcApp - startExtraction - koboReaderFilePath', koboReaderFilePath);
-        console.log('ipcApp - startExtraction - koboRootFolderPath', koboRootFolderPath);
+    async startExtraction(koboReaderFilePath: string, koboRootFolderPath: string): Promise<void> {
+        // console.log('ipcApp - startExtraction - IN');
+        // console.log('ipcApp - startExtraction - koboReaderFilePath', koboReaderFilePath);
+        // console.log('ipcApp - startExtraction - koboRootFolderPath', koboRootFolderPath);
 
         // 1. Find sqlite file -> open it -> returns rows
-        // 2. Extract bookmarks => bookmarks list object
-        const rows = sqliteUtils.GetBookmarksFromKoboReaderFile(koboReaderFilePath);
-        console.log(`ipcApp - rows: ${JSON.stringify(rows)} - ${koboRootFolderPath}`);
+        //    Extract bookmarks => bookmarks list object
+        const sqlBookmarks: SqlBookmark[] = sqliteUtils.GetBookmarksFromKoboReaderFile(koboReaderFilePath);
 
-        // 3. Find corresponding CBZ file
-        // 4. Two objects: found CBZ files, errors
+        // 2. Find corresponding CBZ file
+        //    Two objects: found CBZ files, errors
+        const bookmarks: Bookmark[] = await fileUtils.GetAllBookmarksAsync(sqlBookmarks, koboRootFolderPath);
 
-        console.log('ipcApp - startExtraction - IN');
+        console.log('ipcApp - startExtraction - Bookmark count:', bookmarks.length);
+        console.log('ipcApp - startExtraction - OUT');
     }
 } 

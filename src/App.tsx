@@ -13,7 +13,7 @@ function App() {
     useState<string | undefined>(undefined);
 
   function setDefaultValues() {
-    setSelectedKoboReaderFilePath("C:\\Users\\Liline\\Downloads\\KoboReader.sqlite");
+    setSelectedKoboReaderFilePath("H:\\.kobo\\KoboReader.sqlite");
     setSelectedKoboFolderPath("H:\\");
   }
 
