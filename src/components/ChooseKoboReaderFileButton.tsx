@@ -1,4 +1,3 @@
-// import Path from "node:path";
 import { useState } from "react";
 
 interface Props {
@@ -14,8 +13,6 @@ export function ChooseKoboReaderFileButton({ setSelectedFile, selectedFile }: Pr
         event.preventDefault();
 
         window.ipcApp.selectKoboReaderFileAsync().then((selectedFilePath) => {
-            console.log('handleClick - selectedFile =', selectedFilePath);
-
             setSelectedFile(selectedFilePath);
 
             if (selectedFilePath) {
@@ -44,10 +41,7 @@ export function ChooseKoboReaderFileButton({ setSelectedFile, selectedFile }: Pr
             <>
                 <div className="notification is-danger">
                     <button className="delete"></button>
-                    <p>Primar lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum
-                    dolor. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta
-                    nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus
-                    diam, et dictum <a>felis venenatis</a> efficitur.</p>
+                    <p>Please select your <strong>KoboReader.sqlite</strong> file.</p>
                 </div>
             </>
         }

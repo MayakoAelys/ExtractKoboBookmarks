@@ -24,11 +24,17 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
 });
 
 contextBridge.exposeInMainWorld('ipcApp', {
-  async selectKoboReaderFileAsync() {
-    console.log('selectKoboReaderFile - IN');
-
-    console.log('selectKoboReaderFile - OUT');
-    
+  async selectKoboReaderFileAsync() {   
     return await ipcRenderer.invoke('ipcApp:selectKoboReaderFile');
+  },
+
+  async selectFolderAsync() {
+    return await ipcRenderer.invoke('ipcApp:selectFolder')
+  },
+  
+  async startExtractionAsync(koboReaderFilePath: string, koboRootFolderPath: string) {
+    console.log('preload.ts - startExtractionAsync - koboReaderFilePath', koboReaderFilePath);
+    console.log('preload.ts - startExtractionAsync - koboRootFolderPath', koboRootFolderPath);
+    return await ipcRenderer.invoke('ipcApp:startExtraction', koboReaderFilePath, koboRootFolderPath);
   }
 });

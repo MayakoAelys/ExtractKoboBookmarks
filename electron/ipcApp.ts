@@ -1,30 +1,46 @@
 import { dialog } from 'electron';
-
-function openKoboReaderDbFile(): string | undefined {
-    const chosenFiles: string[] | undefined = dialog.showOpenDialogSync({
-        properties: ["openFile"],
-        filters: [{
-            name: 'SQLite',
-            extensions: ["sqlite"]
-        }]
-    });
-
-    if (!chosenFiles)
-        return undefined;
-
-    return chosenFiles[0];
-}
+import { sqliteUtils } from './utils/sqliteUtils';
 
 export const ipcApp = {
-    selectKoboReaderFile() {
-        console.log('ipcApp:selectKoboReaderFile - IN');
+    selectKoboReaderFile(): string | undefined {
+        const chosenFiles: string[] | undefined = dialog.showOpenDialogSync({
+            properties: ["openFile"],
+            filters: [{
+                name: 'SQLite',
+                extensions: ["sqlite"]
+            }]
+        });
+    
+        if (!chosenFiles)
+            return undefined;
+    
+        return chosenFiles[0];
+    },
 
-        const chosenFile = openKoboReaderDbFile();
+    selectFolder(): string | undefined {
+        const chosenFolder: string[] | undefined = dialog.showOpenDialogSync({
+            properties: ["openDirectory"]
+        });
 
-        console.log(`chosenFiles: ${JSON.stringify(chosenFile)}`);
-        
-        console.log('ipcApp:selectKoboReaderFile - OUT');
+        if (!chosenFolder)
+            return undefined;
 
-        return chosenFile;
+        return chosenFolder[0];
+    },
+
+    startExtraction(koboReaderFilePath: string, koboRootFolderPath: string): void {
+        console.log('ipcApp - startExtraction - IN');
+        console.log('ipcApp - startExtraction - koboReaderFilePath', koboReaderFilePath);
+        console.log('ipcApp - startExtraction - koboRootFolderPath', koboRootFolderPath);
+
+        // 1. Find sqlite file -> open it -> returns rows
+        // 2. Extract bookmarks => bookmarks list object
+        const rows = sqliteUtils.GetBookmarksFromKoboReaderFile(koboReaderFilePath);
+        console.log(`ipcApp - rows: ${JSON.stringify(rows)} - ${koboRootFolderPath}`);
+
+        // 3. Find corresponding CBZ file
+        // 4. Two objects: found CBZ files, errors
+
+        console.log('ipcApp - startExtraction - IN');
     }
 } 

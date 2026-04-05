@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, IpcMainInvokeEvent } from 'electron'
 import path from 'node:path'
 import { update } from './update'
 import { ipcApp } from './ipcApp'
@@ -53,6 +53,14 @@ export function registerAppEvents(baseDir: string, viteDevServerUrl: string, ren
     });
 
     ipcMain.handle('ipcApp:selectKoboReaderFile', () => {
-        return ipcApp.selectKoboReaderFile();
-      });      
+      return ipcApp.selectKoboReaderFile();
+    });
+
+    ipcMain.handle('ipcApp:selectFolder', () => {
+      return ipcApp.selectFolder();
+    })
+
+    ipcMain.handle('ipcApp:startExtraction', (event: IpcMainInvokeEvent, koboReaderFilePath: string, koboRootFolderPath: string) => {
+      ipcApp.startExtraction(koboReaderFilePath, koboRootFolderPath);
+    })
 }
