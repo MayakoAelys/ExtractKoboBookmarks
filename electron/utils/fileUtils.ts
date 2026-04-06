@@ -1,6 +1,9 @@
 import fs from 'fs'
 import path from 'path';
-import { Bookmark } from '../models/Bookmark';
+import yauzl from 'yauzl';
+
+import { app } from 'electron';
+import { Bookmark } from './../models/Bookmark';
 import { SqlBookmark } from '../models/SqlBookmark';
 
 export const fileUtils = {
@@ -12,41 +15,59 @@ export const fileUtils = {
 
         for (const sqlBookmark of sqlBookmarks)
         {
-            // console.log('sqlBookmark:', sqlBookmark.VolumeID);
-
+            // Search an existing file for the bookmark
             const foundPath: string | undefined = allKoboFilesPath.find((filePath) => {
                 const sqlBookmarkFileName = path.basename(sqlBookmark.VolumeID);
 
-                // console.log('    -> find()');
-                // console.log('    -> path.basename(filePath)', path.basename(filePath));
-                // console.log('    -> sqlBookmarkFileName', sqlBookmarkFileName);
-
                 if (path.basename(filePath) === sqlBookmarkFileName)
-                {
-                    // console.log('    -> OK!')
                     return filePath;
+            });
+
+            // Add bookmark or page number if the bookmark already exists
+            let foundResult = false;
+
+            for (let i = 0; i < result.length; i++) {
+                const resultBookmark = result[i];
+
+                if (resultBookmark.filePath === foundPath) {
+                    resultBookmark.bookmarkedPages.push(sqlBookmark.ExtraAnnotationData);
+                    foundResult = true;
+                    break;
                 }
-            });
+            }
 
-            result.push({
-                sqlBookmark: sqlBookmark,
-                filePath: foundPath ?? 'Not found'
-            });
+            if (!foundResult) {
+                result.push({
+                    sqlBookmark: sqlBookmark,
+                    filePath: foundPath ?? 'Not found',
+                    fileName: foundPath ? path.basename(foundPath) : 'Not found',
+                    bookmarkedPages: [sqlBookmark.ExtraAnnotationData]
+                });
+            }
+        }        
+        
+        // Sort the result by filename
+        result.sort((a, b) => {
+            if (a.fileName < b.fileName)
+                return -1;
+                
+            if (a.fileName > b.fileName)
+                return 1;
 
-            //const filePath = path.join(koboRootFolderPath, path.basename(sqlBookmark.VolumeID));
+            return 0;
+        });
 
-            // if (fs.existsSync(filePath)) {
-            //     result.push({
-            //         sqlBookmark: sqlBookmark,
-            //         filePath: filePath
-            //     });
-            // }
-            // else {
-            //     console.log('GetAllBookmarks - File not found or no permission to read:', filePath);
-            // }
+        // Sort bookmarked pages
+        const sortedResult: Bookmark[] = [];
+
+        for (const bookmark of result) {
+            bookmark.bookmarkedPages = 
+                bookmark.bookmarkedPages.sort((a, b) => a - b);
+
+            sortedResult.push(bookmark);
         }
 
-        return result;
+        return sortedResult;
     },
 
     recursiveCBZFileSearch(currentPath: string, filesList?: string[]): string[] {
@@ -64,10 +85,6 @@ export const fileUtils = {
                     this.recursiveCBZFileSearch(fullPath, filesList);
                 }
 
-                // if (path.extname(entry.name).toLowerCase() !== '.cbz')
-                //     continue;
-                // }
-
                 filesList.push(fullPath);
             }
         }
@@ -76,5 +93,63 @@ export const fileUtils = {
         }
 
         return filesList;
-    }
+    },
+
+    extractZipFiles(bookmarks: Bookmark[]) {
+        const extractFolderPath: string = path.join(app.getPath('userData'), 'Extract');
+
+        
+        for (const bookmark of bookmarks) {
+            // Open zip file
+            console.log('EXTRACTING -', bookmark.fileName, `[${JSON.stringify(bookmark.bookmarkedPages)}]`);
+            
+            const destinationFolder = path.join(extractFolderPath, bookmark.fileName);
+
+            // Ensure the folder exists
+            if (!fs.existsSync(destinationFolder))
+                fs.mkdirSync(destinationFolder);
+
+            yauzl.open(
+                bookmark.filePath,
+                {
+                  lazyEntries: true  
+                },
+                (error, zipFile) => 
+                {
+                    if (error || !zipFile) throw error;
+
+                    let fileIndex = 0;
+
+                    zipFile.readEntry();
+
+                    zipFile.on('entry', (entry) => {
+                        const shouldExtract = 
+                            bookmark.bookmarkedPages.indexOf(fileIndex) !== -1;
+
+                        console.log(`fileIndex: ${fileIndex}, extract: ${shouldExtract}`);
+                        fileIndex++;
+
+                        if (!shouldExtract) {
+                            zipFile.readEntry();
+                            return;
+                        }
+
+                        zipFile.openReadStream(entry, (error, readStream) => {
+                            if (error || !readStream) throw error;
+        
+                            const outPath = path.join(destinationFolder, path.basename(entry.fileName));
+                            const writeStream = fs.createWriteStream(outPath);
+        
+                            readStream.on('end', () => zipFile.readEntry()); // next entry
+                            readStream.pipe(writeStream);
+                        });
+                    })
+                }
+            );
+            // Keep it opened until it's not needed anymore
+            break;
+        }
+
+        console.log('extractFolderPath:', extractFolderPath);
+    },
 }

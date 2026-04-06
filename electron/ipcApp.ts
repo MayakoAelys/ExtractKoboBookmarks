@@ -40,11 +40,13 @@ export const ipcApp = {
         //    Extract bookmarks => bookmarks list object
         const sqlBookmarks: SqlBookmark[] = sqliteUtils.GetBookmarksFromKoboReaderFile(koboReaderFilePath);
 
-        // 2. Find corresponding CBZ file
-        //    Two objects: found CBZ files, errors
+        // 2. Find corresponding files
         const bookmarks: Bookmark[] = await fileUtils.GetAllBookmarksAsync(sqlBookmarks, koboRootFolderPath);
+        console.log('ipcApp - startExtraction - Bookmark:', bookmarks);
 
-        console.log('ipcApp - startExtraction - Bookmark count:', bookmarks.length);
+        // 3. Extract ZIP files
+        fileUtils.extractZipFiles(bookmarks);
+        
         console.log('ipcApp - startExtraction - OUT');
     }
 } 
