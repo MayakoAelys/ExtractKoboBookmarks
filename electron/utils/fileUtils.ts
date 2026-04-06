@@ -1,3 +1,4 @@
+// TODO - Code cleaning, this is messy af
 import fs from 'fs'
 import path from 'path';
 import yauzl from 'yauzl';
@@ -79,7 +80,6 @@ export const fileUtils = {
             
             for (const entry of entries) {
                 const fullPath = path.join(currentPath, entry.name);
-                // console.log('recursiveCBZFileSearch - fullPath:', fullPath);
 
                 if (entry.isDirectory()) {
                     this.recursiveCBZFileSearch(fullPath, filesList);
@@ -126,7 +126,6 @@ export const fileUtils = {
                         const shouldExtract = 
                             bookmark.bookmarkedPages.indexOf(fileIndex) !== -1;
 
-                        console.log(`fileIndex: ${fileIndex}, extract: ${shouldExtract}`);
                         fileIndex++;
 
                         if (!shouldExtract) {
@@ -146,10 +145,6 @@ export const fileUtils = {
                     })
                 }
             );
-            // Keep it opened until it's not needed anymore
-            break;
         }
-
-        console.log('extractFolderPath:', extractFolderPath);
     },
 }

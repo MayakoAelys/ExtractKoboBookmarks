@@ -36,7 +36,6 @@ export const sqliteUtils = {
             });
         }
 
-        console.log('sqliteUtils - GetBookmarksFromKoboReaderFile - result:', JSON.stringify(result));
         console.log('sqliteUtils - GetBookmarksFromKoboReaderFile - OUT');
 
         return result;
