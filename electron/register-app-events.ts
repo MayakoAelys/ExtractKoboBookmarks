@@ -60,7 +60,7 @@ export function registerAppEvents(baseDir: string, viteDevServerUrl: string, ren
       return ipcApp.selectFolder();
     })
 
-    ipcMain.handle('ipcApp:startExtraction', (event: IpcMainInvokeEvent, koboReaderFilePath: string, koboRootFolderPath: string) => {
+    ipcMain.handle('ipcApp:startExtraction', (_event: IpcMainInvokeEvent, koboReaderFilePath: string, koboRootFolderPath: string) => {
       ipcApp.startExtraction(koboReaderFilePath, koboRootFolderPath);
     })
 }
