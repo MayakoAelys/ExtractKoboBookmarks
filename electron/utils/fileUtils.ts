@@ -95,9 +95,8 @@ export const fileUtils = {
         return filesList;
     },
 
-    extractZipFiles(bookmarks: Bookmark[]) {
+    extractZipFiles(bookmarks: Bookmark[]): string {
         const extractFolderPath: string = path.join(app.getPath('userData'), 'Extract');
-
         
         for (const bookmark of bookmarks) {
             // Open zip file
@@ -146,5 +145,28 @@ export const fileUtils = {
                 }
             );
         }
+
+        return extractFolderPath;
     },
+
+    tryDriveIsAKoboReader(drivePath: string): boolean {
+        try {
+            const pathToTest = this.getKoboReaderFilePath(drivePath);
+            const pathExists = fs.existsSync(pathToTest);
+
+            console.log('tryDriveIsAKoboReader - pathToTest:', pathToTest);
+            console.log('tryDriveIsAKoboReader - pathExists:', pathExists);
+
+            return pathExists;
+        }
+        catch (error)
+        {
+            console.warn('fileUtils.tryDriveIsAKoboReader - error:', error);
+            return false;
+        }
+    },
+
+    getKoboReaderFilePath(drivePath: string): string {
+        return path.join(drivePath, '.kobo', 'KoboReader.sqlite');
+    }
 }

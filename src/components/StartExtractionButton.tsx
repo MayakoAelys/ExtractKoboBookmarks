@@ -1,29 +1,25 @@
-// import { useState } from "react";
+import { useState } from "react";
 
 interface Props {
-    koboReaderFilePath: string,
     koboRootFolderPath: string
 }
 
-export function StartExtractionButton({ koboReaderFilePath, koboRootFolderPath }: Props) {
+export function StartExtractionButton({ koboRootFolderPath }: Props) {
+
+    const [extractedFilesFolderPath, setExtractedFilesFolderPath] = useState<string>();
 
     function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
 
         console.log('StartExtractionButton - IN');
-        console.log('StartExtractionButton - koboReaderFilePath:', koboReaderFilePath);
         console.log('StartExtractionButton - koboRootFolderPath:', koboRootFolderPath);
 
         window.ipcApp
-            .startExtractionAsync(koboReaderFilePath, koboRootFolderPath)
-            .then(() => {
-                console.log('StartExtractionButton - OUT');
+            .startExtractionAsync(koboRootFolderPath)
+            .then((extractedFilesFolderPath) => {
+                console.log('StartExtractionButton - extractedFilesFolderPath', extractedFilesFolderPath);
+                setExtractedFilesFolderPath(extractedFilesFolderPath);
             });
-
-        // window.ipcApp.selectFolderAsync().then((selectedFolderPath) => {
-        //     setSelectedFolder(selectedFolderPath);
-        //     setFolderSelected(true);
-        // });
     }
 
     return <>
@@ -33,5 +29,13 @@ export function StartExtractionButton({ koboReaderFilePath, koboRootFolderPath }
         >
             Start extraction
         </button>
+        {
+            extractedFilesFolderPath && <>
+                <pre>
+                    Extracted files are here:&nbsp;
+                    { extractedFilesFolderPath }
+                </pre>
+            </>
+        }
     </>
 }

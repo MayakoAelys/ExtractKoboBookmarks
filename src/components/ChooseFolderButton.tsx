@@ -25,9 +25,6 @@ export function ChooseFolderButton({ selectedFolder, setSelectedFolder }: Props)
         >
             Click me!
         </button>
-        { 
-            folderSelected && <pre>Selected File button: { selectedFolder }</pre>
-        }
         {
             folderSelected && !selectedFolder && 
             <>

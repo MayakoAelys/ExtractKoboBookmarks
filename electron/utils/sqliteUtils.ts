@@ -1,13 +1,21 @@
 import { createRequire } from 'node:module'
 import { SqlBookmark } from '../models/SqlBookmark';
+import { fileUtils } from './fileUtils';
+import { error } from 'node:console';
 
 export const sqliteUtils = {
-    GetBookmarksFromKoboReaderFile(koboReaderFilePath: string): SqlBookmark[] {
+    GetBookmarksFromKoboReaderFile(koboDrivePath: string): SqlBookmark[] {
         console.log('sqliteUtils - GetBookmarksFromKoboReaderFile - IN');
-        console.log('sqliteUtils - GetBookmarksFromKoboReaderFile - koboReaderFilePath:', koboReaderFilePath);
+        console.log('sqliteUtils - GetBookmarksFromKoboReaderFile - koboDrivePath:', koboDrivePath);
+
+        if (!fileUtils.tryDriveIsAKoboReader(koboDrivePath)) {
+            throw error('Selected drive is not a Kobo Reader device or is corrupted');
+        }
+
+        const koboReaderSqlitePath = fileUtils.getKoboReaderFilePath(koboDrivePath);
 
         const database = 
-            createRequire(import.meta.url)('better-sqlite3')(koboReaderFilePath, {
+            createRequire(import.meta.url)('better-sqlite3')(koboReaderSqlitePath, {
                 fileMustExist: true
             });
 

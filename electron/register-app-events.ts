@@ -58,9 +58,17 @@ export function registerAppEvents(baseDir: string, viteDevServerUrl: string, ren
 
     ipcMain.handle('ipcApp:selectFolder', () => {
       return ipcApp.selectFolder();
-    })
+    });
 
-    ipcMain.handle('ipcApp:startExtraction', (_event: IpcMainInvokeEvent, koboReaderFilePath: string, koboRootFolderPath: string) => {
-      ipcApp.startExtraction(koboReaderFilePath, koboRootFolderPath);
-    })
+    ipcMain.handle('ipcApp:startExtractionAsync', (_event: IpcMainInvokeEvent, koboDrivePath: string) => {
+      return ipcApp.startExtractionAsync(koboDrivePath);
+    });
+
+    ipcMain.handle('ipcApp:getUsbDrivesAsync', () => {
+       return ipcApp.getUsbDrivesAsync();
+    });
+
+    ipcMain.handle('ipcApp:tryFindKoboReaderDriveAsync', () => {
+      return ipcApp.tryFindKoboReaderDriveAsync();
+    });
 }

@@ -29,12 +29,18 @@ contextBridge.exposeInMainWorld('ipcApp', {
   },
 
   async selectFolderAsync() {
-    return await ipcRenderer.invoke('ipcApp:selectFolder')
+    return await ipcRenderer.invoke('ipcApp:selectFolder');
   },
   
-  async startExtractionAsync(koboReaderFilePath: string, koboRootFolderPath: string) {
-    console.log('preload.ts - startExtractionAsync - koboReaderFilePath', koboReaderFilePath);
-    console.log('preload.ts - startExtractionAsync - koboRootFolderPath', koboRootFolderPath);
-    return await ipcRenderer.invoke('ipcApp:startExtraction', koboReaderFilePath, koboRootFolderPath);
-  }
+  async startExtractionAsync(koboDrivePath: string) {
+    return await ipcRenderer.invoke('ipcApp:startExtractionAsync', koboDrivePath);
+  },
+
+  async getUsbDrivesAsync() {
+    return await ipcRenderer.invoke('ipcApp:getUsbDrivesAsync');
+  },
+
+  async tryFindKoboReaderDriveAsync() {
+    return await ipcRenderer.invoke('ipcApp:tryFindKoboReaderDriveAsync');
+  },
 });
