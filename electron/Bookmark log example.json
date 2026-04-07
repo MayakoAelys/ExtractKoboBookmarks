@@ -1,0 +1,121 @@
+{
+    sqlBookmark: {
+      BookmarkID: '15ac5e99-b494-4d7e-9cf3-411185750e2b',
+      VolumeID: 'file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+      ContentID: "file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz/ONIMAI - I'm Now Your Sister! - c042 (v05) - p032 [Kodansha Comics] [Digital] [1r0n] {HQ}.jpg",
+      ExtraAnnotationData: 32
+    },
+    filePath: 'H:\\ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+    fileName: 'ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz'
+  },
+  {
+    sqlBookmark: {
+      BookmarkID: '7bdb166d-49a4-416d-bd6c-019b72934ce1',
+      VolumeID: 'file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+      ContentID: "file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz/ONIMAI - I'm Now Your Sister! - c043 (v05) - p043 [Kodansha Comics] [Digital] [1r0n] {HQ}.jpg",
+      ExtraAnnotationData: 43
+    },
+    filePath: 'H:\\ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+    fileName: 'ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz'
+  },
+  {
+    sqlBookmark: {
+      BookmarkID: 'a1715c2a-0ec3-4bbb-8e86-6d8ddb0209b6',
+      VolumeID: 'file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+      ContentID: "file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz/ONIMAI - I'm Now Your Sister! - c043 (v05) - p046 [Kodansha Comics] [Digital] [1r0n] {HQ}.jpg",
+      ExtraAnnotationData: 46
+    },
+    filePath: 'H:\\ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+    fileName: 'ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz'
+  },
+  {
+    sqlBookmark: {
+      BookmarkID: '6f4720b5-de15-472e-979b-02cd924aec9e',
+      VolumeID: 'file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+      ContentID: "file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz/ONIMAI - I'm Now Your Sister! - c045 (v05) - p078 [Kodansha Comics] [Digital] [1r0n] {HQ}.jpg",
+      ExtraAnnotationData: 78
+    },
+    filePath: 'H:\\ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+    fileName: 'ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz'
+  },
+  {
+    sqlBookmark: {
+      BookmarkID: '0d619970-a5e1-4710-b0a5-9137e03cde45',
+      VolumeID: 'file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+      ContentID: "file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz/ONIMAI - I'm Now Your Sister! - c045 (v05) - p083 [Kodansha Comics] [Digital] [1r0n] {HQ}.jpg",
+      ExtraAnnotationData: 83
+    },
+    filePath: 'H:\\ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+    fileName: 'ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz'
+  },
+  {
+    sqlBookmark: {
+      BookmarkID: 'afdb81d5-cb0a-4670-b5b6-ec9213337a1d',
+      VolumeID: 'file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+      ContentID: "file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz/ONIMAI - I'm Now Your Sister! - c046 (v05) - p097 [Kodansha Comics] [Digital] [1r0n] {HQ}.jpg",
+      ExtraAnnotationData: 97
+    },
+    filePath: 'H:\\ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+    fileName: 'ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz'
+  },
+  {
+    sqlBookmark: {
+      BookmarkID: 'f6d3ce23-380b-4387-8b80-ba986c7e3e36',
+      VolumeID: 'file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+      ContentID: "file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz/ONIMAI - I'm Now Your Sister! - c049 (v05) - p142 [Kodansha Comics] [Digital] [1r0n] {HQ}.jpg",
+      ExtraAnnotationData: 142
+    },
+    filePath: 'H:\\ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+    fileName: 'ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz'
+  },
+  {
+    sqlBookmark: {
+      BookmarkID: 'a3365fdf-2b02-47a2-9722-3a3ef7cde519',
+      VolumeID: 'file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+      ContentID: "file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz/ONIMAI - I'm Now Your Sister! - c049 (v05) - p143 [Kodansha Comics] [Digital] [1r0n] {HQ}.jpg",
+      ExtraAnnotationData: 143
+    },
+    filePath: 'H:\\ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+    fileName: 'ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz'
+  },
+  {
+    sqlBookmark: {
+      BookmarkID: 'e407ca60-fd82-4547-8020-0bd68fb1b79e',
+      VolumeID: 'file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+      ContentID: "file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz/ONIMAI - I'm Now Your Sister! - c050 (v05) - p151 [Kodansha Comics] [Digital] [1r0n] {HQ}.jpg",
+      ExtraAnnotationData: 151
+    },
+    filePath: 'H:\\ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+    fileName: 'ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz'
+  },
+  {
+    sqlBookmark: {
+      BookmarkID: '4da1fc4c-2d17-4f2a-b80b-5eb402006bf7',
+      VolumeID: 'file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+      ContentID: "file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz/ONIMAI - I'm Now Your Sister! - c050 (v05) - p154 [Kodansha Comics] [Digital] [1r0n] {HQ}.jpg",
+      ExtraAnnotationData: 154
+    },
+    filePath: 'H:\\ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+    fileName: 'ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz'
+  },
+  {
+    sqlBookmark: {
+      BookmarkID: '54bdac8b-f7fc-4197-8f90-dde7f1534b45',
+      VolumeID: 'file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+      ContentID: "file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz/ONIMAI - I'm Now Your Sister! - c050#1 (v05) - p166 [Kodansha Comics] [Digital] [1r0n] {HQ}.jpg",
+      ExtraAnnotationData: 166
+    },
+    filePath: 'H:\\ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+    fileName: 'ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz'
+  },
+  {
+    sqlBookmark: {
+      BookmarkID: 'e79b55fe-f0f1-4932-98d0-75e4708b046d',
+      VolumeID: 'file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+      ContentID: "file:///mnt/onboard/ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz/ONIMAI - I'm Now Your Sister! - c050#1 (v05) - p167 [Kodansha Comics] [Digital] [1r0n] {HQ}.jpg",
+      ExtraAnnotationData: 167
+    },
+    filePath: 'H:\\ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz',
+    fileName: 'ONIMAI - Vol 05 - v05, I_m Now Your Sister_.cbz'
+  },
+  ... 9 more items
