@@ -11,11 +11,11 @@ export function createWindow(baseDir: string, viteDevServerUrl: string, renderer
       webPreferences: {
         preload: path.join(baseDir, 'preload.mjs'),
       },
-      width: 1500,
+      width: 1100,
       height: 900
     })
 
-    win.webContents.openDevTools();
+    // win.webContents.openDevTools();
 
     // Enable auto-update logic
     update(win)
