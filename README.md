@@ -1,6 +1,6 @@
 # Extract Kobo Bookmark
 
-If like me you're reading mangas on a Kobo Reader and wanted to export manga pages to share funny pics with your friend, welcome on this page! It's sad that it is not a native function of our readers :(
+If like me you're reading mangas on a Kobo Reader and wanted to export manga pages to share funny pics with your friends, welcome on this page! It's sad that it is not a native function of our readers :(
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
@@ -25,6 +25,7 @@ It's too soon to contribute to this repository, sorry :3 Feel free to fork!
 
 # Screenshot
 
+(Be warned, this is not the final style at all, it is only the current appearance of the app, the design will be done *later*)
 ![Screenshot of the running application](docs/screenshot.png)
 
 # Notes
