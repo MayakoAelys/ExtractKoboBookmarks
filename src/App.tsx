@@ -1,24 +1,12 @@
 import './App.scss'
-import { useState, useEffect } from "react";
-import { ChooseFolderButton } from './components/ChooseFolderButton';
+import { useState } from "react";
 import { StartExtractionButton } from './components/StartExtractionButton';
+import { ChooseUSBDeviceSelect } from './components/ChooseUSBDeviceSelect';
 
 function App() {
 
   const [selectedKoboFolderPath, setSelectedKoboFolderPath] =
     useState<string | undefined>(undefined);
-
-  async function tryFindKoboReaderDriveAsync(): Promise<void> {
-    const koboReaderDrive = await window.ipcApp.tryFindKoboReaderDriveAsync();
-
-    if (!koboReaderDrive) return;
-
-    setSelectedKoboFolderPath(koboReaderDrive);
-  }
-
-  useEffect(() => {
-    tryFindKoboReaderDriveAsync();
-  }, []);
 
   return (
     <div className="container">
@@ -28,17 +16,11 @@ function App() {
         </center>
 
         <h2 className="title is-3">Select your Kobo Device drive.</h2>
-        <ChooseFolderButton 
+
+        <ChooseUSBDeviceSelect
           setSelectedFolder={setSelectedKoboFolderPath}
-          selectedFolder={selectedKoboFolderPath} />
-        {
-          selectedKoboFolderPath && <>
-              <pre>
-                  Selected drive:&nbsp;
-                  { selectedKoboFolderPath }
-              </pre>
-          </>
-        }
+          selectedFolder={selectedKoboFolderPath}
+        />
 
         {
           selectedKoboFolderPath &&

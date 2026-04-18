@@ -42,24 +42,22 @@ export const ipcApp = {
         return extractedFilesFolder;
     },
 
-    async getUsbDrivesAsync(busType?: string): Promise<Drive[]> {
+    async getDrivesAsync(busType?: string): Promise<Drive[]> {
         const drivelist = createRequire(import.meta.url)('drivelist');
         const drives: Drive[] = await drivelist.list();
+        const filteredDrives: Drive[] = [];
 
-        // for (const drive of drives) {
-        //     console.log(`Drive - ${JSON.stringify(drive)}`);
-        //     console.log(`Drive ${drive.busType} - Mount: `, JSON.stringify(drive.mountpoints));
-        // }
-
-        if (!busType) return drives;
-
-        const filteredDrives = drives.filter((drive) => drive.busType === busType);
+        for (const drive of drives) {
+            if (!busType || busType === drive.busType)  {
+                filteredDrives.push(drive);
+            }
+        }
 
         return filteredDrives;
     },
 
     async tryFindKoboReaderDriveAsync(): Promise<string | undefined> {
-        const usbDrives = await this.getUsbDrivesAsync('USB');
+        const usbDrives = await this.getDrivesAsync('USB');
 
         for (const usbDrive of usbDrives) {
             for (const mountPoint of usbDrive.mountpoints) {

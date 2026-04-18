@@ -2,7 +2,7 @@ export interface IElectronAPI {
     selectKoboReaderFileAsync: () => Promise<string | undefined>,
     selectFolderAsync: () => Promise<string | undefined>,
     startExtractionAsync: (koboRootFolderPath: string) => Promise<string>,
-    getUsbDrivesAsync: () => Promise<Drive[]>,
+    getDrivesAsync: (busType?: string) => Promise<Drive[]>,
     tryFindKoboReaderDriveAsync(): Promise<string | undefined>
   }
   

@@ -64,8 +64,8 @@ export function registerAppEvents(baseDir: string, viteDevServerUrl: string, ren
       return ipcApp.startExtractionAsync(koboDrivePath);
     });
 
-    ipcMain.handle('ipcApp:getUsbDrivesAsync', () => {
-       return ipcApp.getUsbDrivesAsync();
+    ipcMain.handle('ipcApp:getDrivesAsync', (_event: IpcMainInvokeEvent, busType?: string) => {
+       return ipcApp.getDrivesAsync(busType);
     });
 
     ipcMain.handle('ipcApp:tryFindKoboReaderDriveAsync', () => {

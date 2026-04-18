@@ -36,8 +36,8 @@ contextBridge.exposeInMainWorld('ipcApp', {
     return await ipcRenderer.invoke('ipcApp:startExtractionAsync', koboDrivePath);
   },
 
-  async getUsbDrivesAsync() {
-    return await ipcRenderer.invoke('ipcApp:getUsbDrivesAsync');
+  async getDrivesAsync(busType?: string) {
+    return await ipcRenderer.invoke('ipcApp:getDrivesAsync', busType);
   },
 
   async tryFindKoboReaderDriveAsync() {
