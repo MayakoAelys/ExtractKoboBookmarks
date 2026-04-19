@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, IpcMainInvokeEvent } from 'electron'
+import { app, BrowserWindow, ipcMain, IpcMainInvokeEvent, Menu } from 'electron'
 import path from 'node:path'
 import { update } from './update'
 import { ipcApp } from './ipcApp'
@@ -34,6 +34,8 @@ export function createWindow(baseDir: string, viteDevServerUrl: string, renderer
   }
 
 export function registerAppEvents(baseDir: string, viteDevServerUrl: string, rendererDist: string) {
+    Menu.setApplicationMenu(null);
+
     // Quit when all windows are closed, except on macOS. There, it's common
     // for applications and their menu bar to stay active until the user quits
     // explicitly with Cmd + Q.
