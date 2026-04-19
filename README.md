@@ -26,7 +26,21 @@ It's too soon to contribute to this repository, sorry :3 Feel free to fork!
 # Screenshot
 
 (Be warned, this is not the final style at all, it is only the current appearance of the app, the design will be done *later*)
-![Screenshot of the running application](docs/screenshot.png)
+
+## Kobo device check
+This actually checks if the KoboReader.sqlite is found on the selected device.
+
+![Screenshot of the running application](docs/screenshot-2.png)
+
+## Extracted files
+Once the files are extracted, you get the path to the destination folder that should anyway be opened automatically. You can also click on the button to open the folder again!
+
+![Screenshot of the running application](docs/screenshot-1.png)
+
+# AI Usage
+For transparency purpose: this project has **not** been vibe coded >:(
+
+I did use LM Studio and Qwen 3.5 on my own computer to help me with some Electron questions but everything was double checked and everything is done manually anyway, not even a single copy-paste from any LLM or Stack Overflow answer.
 
 # Notes
 
