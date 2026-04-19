@@ -154,9 +154,6 @@ export const fileUtils = {
             const pathToTest = this.getKoboReaderFilePath(drivePath);
             const pathExists = fs.existsSync(pathToTest);
 
-            console.log('tryDriveIsAKoboReader - pathToTest:', pathToTest);
-            console.log('tryDriveIsAKoboReader - pathExists:', pathExists);
-
             return pathExists;
         }
         catch (error)

@@ -11,8 +11,8 @@ export function createWindow(baseDir: string, viteDevServerUrl: string, renderer
       webPreferences: {
         preload: path.join(baseDir, 'preload.mjs'),
       },
-      width: 1100,
-      height: 900
+      width: 1120,
+      height: 955
     })
 
     // win.webContents.openDevTools();
@@ -70,5 +70,13 @@ export function registerAppEvents(baseDir: string, viteDevServerUrl: string, ren
 
     ipcMain.handle('ipcApp:tryFindKoboReaderDriveAsync', () => {
       return ipcApp.tryFindKoboReaderDriveAsync();
+    });
+
+    ipcMain.handle('ipcApp:tryDriveIsAKoboReader', (_event: IpcMainInvokeEvent, path: string) => {
+      return ipcApp.tryDriveIsAKoboReader(path);
+    });
+
+    ipcMain.handle('ipcApp:openFolder', (_event: IpcMainInvokeEvent, path: string) => {
+      return ipcApp.openFolder(path);
     });
 }

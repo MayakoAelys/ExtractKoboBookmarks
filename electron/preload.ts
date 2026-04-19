@@ -43,4 +43,12 @@ contextBridge.exposeInMainWorld('ipcApp', {
   async tryFindKoboReaderDriveAsync() {
     return await ipcRenderer.invoke('ipcApp:tryFindKoboReaderDriveAsync');
   },
+
+  async tryDriveIsAKoboReaderAsync(path: string) {
+    return await ipcRenderer.invoke('ipcApp:tryDriveIsAKoboReader', path);
+  },
+
+  async openFolderAsync(path: string) {
+    return await ipcRenderer.invoke('ipcApp:openFolder', path);
+  }
 });

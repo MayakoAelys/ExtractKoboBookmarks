@@ -3,7 +3,9 @@ export interface IElectronAPI {
     selectFolderAsync: () => Promise<string | undefined>,
     startExtractionAsync: (koboRootFolderPath: string) => Promise<string>,
     getDrivesAsync: (busType?: string) => Promise<Drive[]>,
-    tryFindKoboReaderDriveAsync(): Promise<string | undefined>
+    tryFindKoboReaderDriveAsync(): Promise<string | undefined>,
+    tryDriveIsAKoboReaderAsync(path: string): Promise<boolean>,
+    openFolderAsync(path: string): Promise<void>
   }
   
   declare global {

@@ -65,8 +65,6 @@ export function ChooseUSBDeviceSelect({ selectedFolder, setSelectedFolder }: Pro
     function onChangeDrive(event: React.ChangeEvent<HTMLSelectElement>) {
         event.preventDefault();
 
-        console.log('onChangeDrive, event:', event);
-
         setSelectedFolder(event.target.value);
     }
 

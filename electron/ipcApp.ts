@@ -1,5 +1,5 @@
 import { createRequire } from 'node:module';
-import { dialog } from 'electron';
+import { dialog, shell } from 'electron';
 import { sqliteUtils } from './utils/sqliteUtils';
 import { SqlBookmark } from './models/SqlBookmark';
 import { Bookmark } from './models/Bookmark';
@@ -39,6 +39,8 @@ export const ipcApp = {
         
         const extractedFilesFolder = fileUtils.extractZipFiles(bookmarks);
 
+        shell.openPath(extractedFilesFolder);
+
         return extractedFilesFolder;
     },
 
@@ -69,5 +71,13 @@ export const ipcApp = {
         }
 
         return undefined;
+    },
+
+    async tryDriveIsAKoboReader(path: string): Promise<boolean> {
+        return fileUtils.tryDriveIsAKoboReader(path);
+    },
+
+    async openFolder(path: string): Promise<void> {
+        shell.openPath(path);
     }
 } 

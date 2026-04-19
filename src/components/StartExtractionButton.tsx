@@ -1,41 +1,33 @@
 import { useState } from "react";
 
 interface Props {
-    koboRootFolderPath: string
+    koboRootFolderPath: string;
+    setExtractedFilesFolderPath: (path: string) => void;
 }
 
-export function StartExtractionButton({ koboRootFolderPath }: Props) {
+export function StartExtractionButton({ koboRootFolderPath, setExtractedFilesFolderPath }: Props) {
 
-    const [extractedFilesFolderPath, setExtractedFilesFolderPath] = useState<string>();
+    const [isExtracting, setIsExtracting] = useState<boolean>(false);
 
     function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
 
-        console.log('StartExtractionButton - IN');
-        console.log('StartExtractionButton - koboRootFolderPath:', koboRootFolderPath);
+        setIsExtracting(true);
 
         window.ipcApp
             .startExtractionAsync(koboRootFolderPath)
             .then((extractedFilesFolderPath) => {
-                console.log('StartExtractionButton - extractedFilesFolderPath', extractedFilesFolderPath);
                 setExtractedFilesFolderPath(extractedFilesFolderPath);
+                setIsExtracting(false);
             });
     }
 
     return <>
         <button 
-            className="button is-primary"
+            className={ "button is-primary" + (isExtracting ? " disabled is-loading" : "") }
             onClick={ handleClick }
         >
             Start extraction
         </button>
-        {
-            extractedFilesFolderPath && <>
-                <pre>
-                    Extracted files are here:&nbsp;
-                    { extractedFilesFolderPath }
-                </pre>
-            </>
-        }
     </>
 }
