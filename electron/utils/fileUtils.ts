@@ -97,6 +97,9 @@ export const fileUtils = {
 
     extractZipFiles(bookmarks: Bookmark[]): string {
         const extractFolderPath: string = path.join(app.getPath('userData'), 'Extract');
+
+        if (!fs.existsSync(extractFolderPath))
+            fs.mkdirSync(extractFolderPath);
         
         for (const bookmark of bookmarks) {
             // Open zip file
@@ -108,42 +111,41 @@ export const fileUtils = {
             if (!fs.existsSync(destinationFolder))
                 fs.mkdirSync(destinationFolder);
 
-            yauzl.open(
-                bookmark.filePath,
-                {
-                  lazyEntries: true  
-                },
-                (error, zipFile) => 
-                {
-                    if (error || !zipFile) throw error;
+            yauzl.open(bookmark.filePath, { lazyEntries: true, autoClose: false }, (error, zipFile) => {
+                if (error || !zipFile) throw error;
 
-                    let fileIndex = 0;
+                const entries: yauzl.Entry[] = [];
 
+                zipFile.readEntry();
+
+                zipFile.on("entry", (entry) => {
+                    entries.push(entry);
                     zipFile.readEntry();
+                });
 
-                    zipFile.on('entry', (entry) => {
-                        const shouldExtract = 
-                            bookmark.bookmarkedPages.indexOf(fileIndex) !== -1;
+                zipFile.on("end", () => {
+                    entries.sort((a, b) => a.fileName.localeCompare(b.fileName));
 
-                        fileIndex++;
-
-                        if (!shouldExtract) {
-                            zipFile.readEntry();
-                            return;
-                        }
+                    for (let i = 0; i < entries.length; i++) {
+                        const entry = entries[i];
 
                         zipFile.openReadStream(entry, (error, readStream) => {
-                            if (error || !readStream) throw error;
-        
+                            if (error) throw error;
+
+                            const shouldExtract = bookmark.bookmarkedPages.indexOf(i) !== -1;
+
+                            if (!shouldExtract) {
+                                return;
+                            }
+                            
                             const outPath = path.join(destinationFolder, path.basename(entry.fileName));
                             const writeStream = fs.createWriteStream(outPath);
-        
-                            readStream.on('end', () => zipFile.readEntry()); // next entry
+                            
                             readStream.pipe(writeStream);
                         });
-                    })
-                }
-            );
+                    }
+                });
+            });
         }
 
         return extractFolderPath;
